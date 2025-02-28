@@ -289,7 +289,9 @@ export type Icon = {
 
 export function createIcon(path: string, rotate = false) {
   const NNIcon: Icon = function Icon(props) {
-    const { sx, rotate: _rotate = rotate, size, ...restProps } = props;
+    // Passing rotateDirection will bleed to div causes html error
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    const { rotateDirection, sx, rotate: _rotate = rotate, size, ...restProps } = props;
     return (
       <Flex
         {...restProps}

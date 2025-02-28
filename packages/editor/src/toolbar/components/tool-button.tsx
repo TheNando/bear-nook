@@ -50,6 +50,13 @@ export const ToolButton = React.memo(
     } = props;
     const isMobile = useIsMobile();
 
+    // @ts-expect-error: prop bleeds to html
+    delete buttonProps.parentGroup;
+    // @ts-expect-error: prop bleeds to html
+    delete buttonProps.popupId;
+    // @ts-expect-error: prop bleeds to html
+    delete buttonProps.isActive;
+
     return (
       <Button
         variant="secondary"
@@ -70,8 +77,8 @@ export const ToolButton = React.memo(
           ":hover:not(:disabled):not(:active)": !isMobile
             ? undefined
             : {
-                bg: "transparent"
-              },
+              bg: "transparent"
+            },
           ...sx
         }}
         onMouseDown={(e) => {
