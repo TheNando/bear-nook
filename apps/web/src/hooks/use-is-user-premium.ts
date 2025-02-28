@@ -30,17 +30,7 @@ export function useIsUserPremium() {
 }
 
 export function isUserPremium(user?: User) {
-  if (IS_TESTING) return !("isBasic" in window);
-  if (!user) user = userstore.get().user;
-  if (!user) return false;
-
-  const subStatus = user.subscription.type;
-  return (
-    subStatus === SUBSCRIPTION_STATUS.BETA ||
-    subStatus === SUBSCRIPTION_STATUS.PREMIUM ||
-    subStatus === SUBSCRIPTION_STATUS.PREMIUM_CANCELED ||
-    subStatus === SUBSCRIPTION_STATUS.TRIAL
-  );
+  return true;
 }
 
 export function isUserSubscribed(user?: User) {
