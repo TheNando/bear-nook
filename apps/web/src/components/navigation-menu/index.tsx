@@ -223,7 +223,8 @@ function NavigationMenu(props: NavigationMenuProps) {
         height: "100%",
         overflow: "hidden",
         bg: "background",
-        borderRight: "1px solid var(--separator)"
+        paddingTop: "32px"
+        // borderRight: "1px solid var(--separator)"
       }}
     >
       <Flex
@@ -299,10 +300,10 @@ function NavigationMenu(props: NavigationMenuProps) {
                         item.path === "/trash"
                           ? "trash"
                           : item.path === "/favorites"
-                          ? "favorites"
-                          : item.path === "/notebooks"
-                          ? "notebooks"
-                          : undefined
+                            ? "favorites"
+                            : item.path === "/notebooks"
+                              ? "notebooks"
+                              : undefined
                     });
                   }}
                   selected={
@@ -407,8 +408,8 @@ function NavigationMenu(props: NavigationMenuProps) {
                     item.type === "notebook"
                       ? Notebook2
                       : item.type === "tag"
-                      ? Tag2
-                      : Topic
+                        ? Tag2
+                        : Topic
                   }
                   isShortcut
                   selected={shouldSelectNavItem(location, item)}
@@ -435,8 +436,8 @@ function NavigationMenu(props: NavigationMenuProps) {
                     item.type === "notebook"
                       ? Notebook2
                       : item.type === "tag"
-                      ? Tag2
-                      : Topic
+                        ? Tag2
+                        : Topic
                   }
                   isShortcut
                   selected={shouldSelectNavItem(location, item)}
@@ -485,7 +486,6 @@ function NavigationMenu(props: NavigationMenuProps) {
             id={settings.id}
             isTablet={isTablet}
             key={settings.path}
-            title={profile?.fullName || settings.title}
             icon={profile?.fullName ? User : settings.icon}
             image={profile?.fullName ? profile?.profilePicture : undefined}
             onClick={() => {
@@ -494,8 +494,13 @@ function NavigationMenu(props: NavigationMenuProps) {
               hashNavigate("/settings");
             }}
             selected={location.startsWith(settings.path)}
+            sx={{
+              position: "absolute",
+              top: "2px",
+              right: "0px"
+            }}
           >
-            {isTablet ? null : (
+            {/* {isTablet ? null : (
               <Button
                 variant={"icon"}
                 title={strings.toggleDarkLightMode()}
@@ -511,7 +516,7 @@ function NavigationMenu(props: NavigationMenuProps) {
                   <DarkMode size={16} />
                 )}
               </Button>
-            )}
+            )} */}
           </NavigationItem>
         </Flex>
       </Flex>
@@ -540,13 +545,13 @@ function findNestedRoute(location: string) {
 type ReorderableListProps<T> = {
   orderKey: string;
   items: T[];
-  renderItem: (props: { item: T }) => JSX.Element;
-  renderOverlay: (props: { item: T }) => JSX.Element;
+  renderItem: (props: { item: T; }) => JSX.Element;
+  renderOverlay: (props: { item: T; }) => JSX.Element;
   onOrderChanged: (newOrder: string[]) => void;
   order: () => string[];
 };
 
-function ReorderableList<T extends { id: string }>(
+function ReorderableList<T extends { id: string; }>(
   props: ReorderableListProps<T>
 ) {
   const {
@@ -631,7 +636,7 @@ function ReorderableList<T extends { id: string }>(
   );
 }
 
-function orderItems<T extends { id: string }>(items: T[], order: string[]) {
+function orderItems<T extends { id: string; }>(items: T[], order: string[]) {
   const sorted: T[] = [];
   order.forEach((id) => {
     const item = items.find((i) => i.id === id);
@@ -642,7 +647,7 @@ function orderItems<T extends { id: string }>(items: T[], order: string[]) {
   return sorted;
 }
 
-function toMenuItems<T extends { id: string; title: string }>(
+function toMenuItems<T extends { id: string; title: string; }>(
   items: T[],
   hiddenIds: string[],
   onHiddenIdsUpdated: (ids: string[]) => void

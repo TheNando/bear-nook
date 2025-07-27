@@ -77,7 +77,7 @@ import { TITLE_BAR_HEIGHT } from "../title-bar";
 
 const PDFPreview = React.lazy(() => import("../pdf-preview"));
 
-const autoSaveToast = { show: true, hide: () => {} };
+const autoSaveToast = { show: true, hide: () => { } };
 
 async function saveContent(
   noteId: string,
@@ -128,12 +128,13 @@ export default function TabsView() {
 
   return (
     <>
+      {/* NAN-DO: No tabs */}
       <Flex
         className="editor-action-bar"
         sx={{
           zIndex: 2,
           height: TITLE_BAR_HEIGHT,
-          borderBottom: "1px solid var(--border)"
+          // borderBottom: "1px solid var(--border)"
         }}
       >
         <EditorActionBar />
@@ -235,10 +236,10 @@ function EditorView({
   session
 }: {
   session:
-    | DefaultEditorSession
-    | NewEditorSession
-    | ReadonlyEditorSession
-    | DeletedEditorSession;
+  | DefaultEditorSession
+  | NewEditorSession
+  | ReadonlyEditorSession
+  | DeletedEditorSession;
 }) {
   const lastChangedTime = useRef<number>(0);
   const root = useRef<HTMLDivElement>(null);
@@ -870,7 +871,7 @@ function restoreSelection(editor: IEditor, id: string) {
   });
 }
 
-type UnlockNoteViewProps = { session: LockedEditorSession };
+type UnlockNoteViewProps = { session: LockedEditorSession; };
 function UnlockNoteView(props: UnlockNoteViewProps) {
   const { session } = props;
   const root = useRef<HTMLDivElement>(null);

@@ -46,6 +46,7 @@ function CachedRouter() {
     cachedRoutes.current[RouteResult.key] =
       RouteResult.component as React.FunctionComponent;
 
+  {/* NAN-DO: Bear style previews */ }
   return (
     <RouteContainer
       type={RouteResult.type}

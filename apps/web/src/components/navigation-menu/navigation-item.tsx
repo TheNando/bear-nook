@@ -32,7 +32,7 @@ type NavigationItemProps = {
   icon?: Icon;
   image?: string;
   color?: SchemeColors;
-  title: string;
+  title?: string;
   isTablet?: boolean;
   isLoading?: boolean;
   isShortcut?: boolean;
@@ -45,7 +45,7 @@ type NavigationItemProps = {
 
 function NavigationItem(
   props: PropsWithChildren<
-    NavigationItemProps & { containerRef?: React.Ref<HTMLElement> } & FlexProps
+    NavigationItemProps & { containerRef?: React.Ref<HTMLElement>; } & FlexProps
   >
 ) {
   const {
@@ -144,7 +144,7 @@ function NavigationItem(
           />
         )}
 
-        <Text
+        {title && <Text
           variant="body"
           sx={{
             whiteSpace: "nowrap",
@@ -174,7 +174,7 @@ function NavigationItem(
               {tag}
             </Text>
           )} */}
-        </Text>
+        </Text>}
       </Button>
       {children ? (
         children

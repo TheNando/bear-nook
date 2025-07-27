@@ -208,7 +208,7 @@ function DesktopAppContents({ show, setShow }: DesktopAppContentsProps) {
                   flexDirection: "column",
                   flex: 1,
                   bg: "background",
-                  borderRight: "1px solid var(--separator)"
+                  // borderRight: "1px solid var(--separator)"
                 }}
               >
                 <CachedRouter />
@@ -301,7 +301,7 @@ function MobileAppContents() {
           flexShrink: 0
         }}
       >
-        <NavigationMenu toggleNavigationContainer={() => {}} isTablet={false} />
+        <NavigationMenu toggleNavigationContainer={() => { }} isTablet={false} />
       </Flex>
       <Flex
         className="mobile-list-pane"
